@@ -1,0 +1,128 @@
+"map <SPACE> <Nop>
+let mapleader = " "
+inoremap jk <ESC>
+inoremap kj <ESC>
+
+""" Common settings -------------------------
+set history=1000
+set showmode
+set so=5
+set incsearch
+set nu
+set relativenumber
+set ignorecase
+set visualbell
+set showmode
+set showcmd
+set wrapscan
+set clipboard^=unnamedplus,unnamed
+set ideavimsupport=dialog
+
+""" Vim remap
+"" change windows
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
+map <C-n> <Action>(PopupMenu-selectNext)
+map <C-p> <Action>(PopupMenu-selectPrev)
+
+" half page jumping and keep cursor on the middle of screen
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+map ;q <Action>(CloseContent)
+
+map <A-h> <Action>(StretchSplitToLeft)
+map <A-j> <Action>(StretchSplitToBottom)
+map <A-k> <Action>(StretchSplitToTop)
+map <A-l> <Action>(StretchSplitToRight)
+
+map <leader>ws <Action>(SplitVertically)
+map <leader>wh <Action>(SplitHorizontally)
+map <leader>wu <Action>(Unsplit)
+map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
+
+"" change tabs
+nnoremap <C-tab> gt
+nnoremap <C-S-tab> gT
+
+map <C--> <Action>(Back)
+map <C-=> <Action>(Forward)
+
+""" Idea specific settings ------------------
+sethandler <C-j> a:vim
+sethandler <C-k> a:vim
+sethandler <C-a> n-i-x:ide """ select all instead of increment number (nvim)
+sethandler <C-c> n-i-x:ide """ copy instead of leaving insert mode (nvim)
+sethandler <C-f> n-i-x:ide """ search instead of page down (nvim) - can use c-d for page down
+sethandler <C-x> n-i-x:ide """ cut instead of decrement number (nvim)
+sethandler <C-p> n-i-x:ide """ parameterInfo
+sethandler <C-J> n:vim i-x:ide
+sethandler <C-w> n-i-x:ide """ expand selection
+sethandler <C-v> i:ide
+
+""" Document actions
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+Plug 'terryma/vim-multiple-cursors'
+set ideamarks
+set ideajoin
+set ideastatusicon=gray
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+set NERDTree
+let g:NERDTreeMapActivateNode='l'
+let g:NERDTreeMapJumpParent='h'
+" useful nerdtree shortcuts 
+" esc - close 
+" m - display menu
+" q - close nerdtree
+" O - recursively open all directories
+
+map <leader>p :NERDTreeToggle<CR>
+
+map == <Action>(ReformatCode)
+map <leader>s <Action>(SaveAll)
+
+map <leader>fu <Action>(FindUsages)
+map <leader>fi <Action>(Find)
+nmap <leader>fo <Action>(RecentFiles)
+map <leader>fr <Action>(Replace)
+nmap <leader>fa <Action>(SearchEverywhere)
+nmap <leader>fb <Action>(Switcher)
+nmap <leader>fl <Action>(RecentLocations)
+nmap <leader>ff <Action>(GotoFile)
+nmap <leader>fc <Action>(GotoClass)
+nmap <leader>fs <Action>(GotoSymbol)
+nmap <leader>fa <Action>(GotoAction)
+
+""" Project actions
+nmap <leader>dr <Action>(Debug)
+nmap <leader>dc <Action>(Stop)
+nmap <leader>R <Action>(Refactorings.QuickListPopupAction)
+nmap <leader>db <Action>(ToggleLineBreakpoint)
+
+map gd <Action>(GotoDeclaration)
+map go <Action>(SwitchHeaderSource)
+map gD <Action>(GotoTypeDeclaration)
+map gR <Action>(GotoRelated)
+map gP <Action>(ParameterInfo)
+map gl <Action>(ShowErrorDescription)
+map ge <Action>(GotoNextError)
+map gE <Action>(GotoPreviousError)
+map K <Action>(QuickJavaDoc)
+map gI <Action>(QuickImplementations)
+map <leader>e <Action>(ShowErrorDescription)
+
+map gH <Action>(HighlightUsagesInFile)
+map gu <Action>(ShowUsages)
+
+map [[ <Action>(MethodUp)
+map ]] <Action>(MethodDown)
+
+map <leader>zz <Action>(ToggleZenMode)
+map <leader>zc <Action>(CollapseAllRegions)
+map <leader>ze <Action>(ExpandAllRegions)
